@@ -1,7 +1,7 @@
-<?php  namespace Rossedman\Teamwork;
+<?php  namespace Johnrich85\Teamwork;
 
-use Rossedman\Teamwork\Traits\TimeTrait;
-use Rossedman\Teamwork\Traits\RestfulTrait;
+use Johnrich85\Teamwork\Traits\TimeTrait;
+use Johnrich85\Teamwork\Traits\RestfulTrait;
 
 class Task extends AbstractObject {
 
@@ -58,7 +58,7 @@ class Task extends AbstractObject {
     {
         return $this->client->get("$this->endpoint/$this->id/time/total")->response();
     }
-    
+
     /**
      * Edit A Task
      * PUT tasks/{id}.json

@@ -1,4 +1,4 @@
-<?php  namespace Rossedman\Teamwork\Facades;
+<?php  namespace Johnrich85\Teamwork\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

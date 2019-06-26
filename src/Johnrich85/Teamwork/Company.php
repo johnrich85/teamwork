@@ -1,6 +1,6 @@
-<?php  namespace Rossedman\Teamwork;
+<?php  namespace Johnrich85\Teamwork;
 
-use Rossedman\Teamwork\Traits\RestfulTrait;
+use Johnrich85\Teamwork\Traits\RestfulTrait;
 
 class Company extends AbstractObject {
 
@@ -22,7 +22,7 @@ class Company extends AbstractObject {
     {
         return $this->client->get("$this->endpoint/$this->id/people")->response();
     }
-    
+
     /**
      * Get Projects Associated With Company
      * GET /companies/{company_id}/projects.json
@@ -34,5 +34,5 @@ class Company extends AbstractObject {
     public function projects()
     {
         return $this->client->get("$this->endpoint/$this->id/projects")->response();
-    }    
+    }
 }

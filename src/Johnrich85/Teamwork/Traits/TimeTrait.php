@@ -1,4 +1,4 @@
-<?php  namespace Rossedman\Teamwork\Traits; 
+<?php  namespace Johnrich85\Teamwork\Traits;
 
 trait TimeTrait {
 

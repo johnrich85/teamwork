@@ -1,4 +1,4 @@
-<?php namespace Rossedman\Teamwork;
+<?php namespace Johnrich85\Teamwork;
 
 use GuzzleHttp\Client as Guzzle;
 use Illuminate\Support\ServiceProvider;
@@ -14,15 +14,15 @@ class TeamworkServiceProvider extends ServiceProvider {
     {
         $this->app->singleton('rossedman.teamwork', function($app)
         {
-            $client = new \Rossedman\Teamwork\Client(new Guzzle,
+            $client = new \Johnrich85\Teamwork\Client(new Guzzle,
                 $app['config']->get('services.teamwork.key'),
                 $app['config']->get('services.teamwork.url')
             );
 
-            return new \Rossedman\Teamwork\Factory($client);
+            return new \Johnrich85\Teamwork\Factory($client);
         });
 
-        $this->app->bind('Rossedman\Teamwork\Factory', 'rossedman.teamwork');
+        $this->app->bind('Johnrich85\Teamwork\Factory', 'rossedman.teamwork');
     }
 
 }

@@ -24,7 +24,7 @@ Once this package is pulled into your project just add this to your `config/app.
 ```php
 'providers' => [
     ...
-    'Rossedman\Teamwork\TeamworkServiceProvider',
+    'Johnrich85\Teamwork\TeamworkServiceProvider',
 ],
 ```
 
@@ -33,7 +33,7 @@ and then add the facade to your `aliases` array
 ```php
 'aliases' => [
     ...
-    'Teamwork' => 'Rossedman\Teamwork\Facades\Teamwork',
+    'Teamwork' => 'Johnrich85\Teamwork\Facades\Teamwork',
 ],
 ```
 
@@ -57,10 +57,10 @@ If you are using the Facade with Laravel youc an easily access Teamwork like thi
 Teamwork::people()->all();
 ```
 
-If you want to use dependency injection to make your application easy to test the Service Provider binds `Rossedman\Teamwork\Factory`. Here is an example of how to use it with dependency injection
+If you want to use dependency injection to make your application easy to test the Service Provider binds `Johnrich85\Teamwork\Factory`. Here is an example of how to use it with dependency injection
 
 ```php
-Route::get('/test', function(Rossedman\Teamwork\Factory $teamwork) {
+Route::get('/test', function(Johnrich85\Teamwork\Factory $teamwork) {
    $activity = $teamwork->activity()->latest();
 });
 ```
@@ -73,8 +73,8 @@ If you are not using Laravel you can instantiate the class like this
 require "vendor/autoload.php";
 
 use GuzzleHttp\Client as Guzzle;
-use Rossedman\Teamwork\Client;
-use Rossedman\Teamwork\Factory as Teamwork;
+use Johnrich85\Teamwork\Client;
+use Johnrich85\Teamwork\Factory as Teamwork;
 
 $client     = new Client(new Guzzle, 'YourSecretKey', 'YourTeamworkUrl');
 $teamwork   = new Teamwork($client);

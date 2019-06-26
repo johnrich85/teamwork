@@ -1,6 +1,6 @@
-<?php  namespace Rossedman\Teamwork;
+<?php  namespace Johnrich85\Teamwork;
 
-use Rossedman\Teamwork\Traits\RestfulTrait;
+use Johnrich85\Teamwork\Traits\RestfulTrait;
 
 class Tasklist extends AbstractObject {
 
@@ -66,7 +66,7 @@ class Tasklist extends AbstractObject {
     public function tasks($args = null)
     {
         $this->areArgumentsValid($args, ['filter', 'page', 'pageSize', 'startdate', 'enddate', 'updatedAfterDate', 'completedAfterDate', 'completedBeforeDate', 'showDeleted', 'includeCompletedTasks', 'includeCompletedSubtasks', 'creator-ids', 'include', 'responsible-party-ids', 'sort', 'getSubTasks', 'nestSubTasks', 'getFiles', 'dataSet', 'includeToday', 'ignore-start-date']);
-    
+
         return $this->client->get("$this->endpoint/$this->id/tasks", $args)->response();
     }
 

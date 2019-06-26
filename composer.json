@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Rossedman\\Teamwork\\": "src"
+            "Johnrich85\\Teamwork\\": "src"
         }
     },
     "suggest": {

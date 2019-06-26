@@ -1,7 +1,7 @@
-<?php  namespace Rossedman\Teamwork;
+<?php  namespace Johnrich85\Teamwork;
 
-use Rossedman\Teamwork\Traits\TimeTrait;
-use Rossedman\Teamwork\Traits\RestfulTrait;
+use Johnrich85\Teamwork\Traits\TimeTrait;
+use Johnrich85\Teamwork\Traits\RestfulTrait;
 
 class Project extends AbstractObject {
 

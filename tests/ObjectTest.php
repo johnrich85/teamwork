@@ -9,7 +9,7 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
     public function setUp()
     {
         parent::setup();
-        $request = m::mock('Rossedman\Teamwork\Contracts\RequestableInterface');
+        $request = m::mock('Johnrich85\Teamwork\Contracts\RequestableInterface');
         $this->object = new ObjectStub($request);
     }
 
@@ -61,7 +61,7 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
 
 }
 
-class ObjectStub extends \Rossedman\Teamwork\AbstractObject {
+class ObjectStub extends \Johnrich85\Teamwork\AbstractObject {
 
     public function valid_args($args, $accepted)
     {
