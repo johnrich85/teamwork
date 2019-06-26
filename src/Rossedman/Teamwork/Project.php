@@ -91,6 +91,18 @@ class Project extends AbstractObject {
     }
 
     /**
+     * All Project board columns.
+     *
+     * GET /projects/{id}/boards/columns.json
+     *
+     * @return mixed
+     */
+    public function boardColumns()
+    {
+        return $this->client->get("$this->endpoint/$this->id/boards/columns")->response();
+    }
+
+    /**
      * Time Totals
      * GET /projects/{id}/time/total.json
      *

@@ -26,14 +26,14 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $client = new Client($this->guzzle, 'key', 'http://teamwork.com');
 
         $this->guzzle
-            ->shouldReceive('createRequest')->once()
-            ->with('GET', 'http://teamwork.com/packages.json', ['auth' => ['key', 'X'], 'body' => []])
-            ->andReturn(m::mock('GuzzleHttp\Message\Request'));
+            ->shouldReceive('request')->once()
+            ->with('GET', 'http://teamwork.com/packages.json', ['auth' => ['key', 'X'], 'query' => []])
+            ->andReturn(m::mock(\GuzzleHttp\Psr7\Response::class));
 
         $returned = $client->buildRequest('packages', 'GET');
 
-        $this->assertInstanceOf('Rossedman\Teamwork\Client', $returned);
-        $this->assertInstanceOf('GuzzleHttp\Message\Request', $returned->getRequest());
+        $this->assertInstanceOf(Client::class, $returned);
+        $this->assertInstanceOf(\GuzzleHttp\Psr7\Response::class, $returned->getResponse());
     }
 
     /**

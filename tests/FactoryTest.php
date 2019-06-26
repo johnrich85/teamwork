@@ -8,7 +8,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase {
     public function setUp()
     {
         parent::setUp();
-        $this->requestable = m::mock('Rossedman\Teamwork\Contracts\RequestableInterface');
+        $this->requestable = m::mock(\Rossedman\Teamwork\Contracts\RequestableInterface::class);
     }
 
     public function tearDown()
@@ -22,7 +22,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase {
     public function test_that_it_returns_new_account_object()
     {
         $factory = new Factory($this->requestable);
-        $this->assertInstanceOf('Rossedman\Teamwork\Account', $factory->account());
+        $this->assertInstanceOf(\Rossedman\Teamwork\Account::class, $factory->account());
     }
 
     /**

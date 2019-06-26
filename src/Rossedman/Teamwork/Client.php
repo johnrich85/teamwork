@@ -1,6 +1,7 @@
 <?php  namespace Rossedman\Teamwork;
 
 use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp\Psr7\Response;
 use Rossedman\Teamwork\Contracts\RequestableInterface;
 
 class Client implements RequestableInterface {
@@ -11,12 +12,7 @@ class Client implements RequestableInterface {
     protected $client;
 
     /**
-     * @var GuzzleHttp\Request
-     */
-    protected $request;
-
-    /**
-     * @var GuzzleHttp\Response
+     * @var Response
      */
     protected $response;
 
@@ -69,7 +65,7 @@ class Client implements RequestableInterface {
      */
     public function get($endpoint, $query = null)
     {
-        $this->buildRequest($endpoint, 'GET', [], $query);
+        $this->buildRequest($endpoint, 'GET', $query);
 
         return $this;
     }
@@ -121,27 +117,26 @@ class Client implements RequestableInterface {
      * and string queries if necessary. This is where the bulk
      * of the data is build up to connect to Teamwork with.
      *
-     * @param        $endpoint
-     * @param string $action
-     * @param array  $params
-     *
+     * @param $endpoint
+     * @param $action
+     * @param array $params
      * @return $this
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function buildRequest($endpoint, $action, $params = [], $query = null)
+    public function buildRequest($endpoint, $action, $params = [])
     {
-        if (count($params) > 0)
+        if ($params && count($params) > 0)
         {
             $params = json_encode($params);
         }
 
-        $this->request = $this->client->createRequest($action,
-            $this->buildUrl($endpoint), ['auth' => [$this->key, 'X'], 'body' => $params]
-        );
+        $requestPart = $action === 'GET' ? 'query' : 'body';
 
-        if ($query != null)
-        {
-            $this->buildQuery($query);
-        }
+        $this->response = $this->client->request(
+            $action,
+            $this->buildUrl($endpoint),
+            ['auth' => [$this->key, 'X'], $requestPart => $params]
+        );
 
         return $this;
     }
@@ -154,9 +149,7 @@ class Client implements RequestableInterface {
      */
     public function response()
     {
-        $this->response = $this->client->send($this->request);
-
-        return $this->response->json();
+        return json_decode($this->response->getBody(), true);
     }
 
     /**
@@ -185,32 +178,7 @@ class Client implements RequestableInterface {
         return $this->url . $endpoint . '.' . $this->dataFormat;
     }
 
-    /**
-     * Build Query String
-     *
-     * if a query string is needed it will be built up
-     * and added to the request. This is only used in certain
-     * GET requests
-     *
-     * @param $query
-     */
-    public function buildQuery($query)
-    {
-        $q = $this->request->getQuery();
-
-        foreach ($query as $key => $value)
-        {
-            $q[$key] = $value;
-        }
-    }
-
-    /**
-     * Get Request
-     *
-     * @return mixed
-     */
-    public function getRequest()
-    {
-        return $this->request;
+    public function getResponse() {
+        return $this->response;
     }
 }
