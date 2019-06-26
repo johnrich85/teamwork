@@ -11,17 +11,10 @@
 This is a simple PHP Client that can connect to the [Teamwork](http://www.teamwork.com) API. This package was developed to be used with [Laravel 5](http://www.laravel.com) but can also be used stand alone as well. I hope this helps you automate and extend Teamwork to integrate even more into your business! Have fun and good luck. :metal:
 
 ## Installation
-
-Just add this to your `composer.json` and then run `composer update`.
-
-```
-"johnrich85/teamwork": "~1.0"
-```
-
-You can also simply add it like this
+You can simply add it like this
 
 ```
-composer require "johnrich85/teamwork:~1.0"
+composer require "johnrich85/teamwork"
 ```
 
 ## Laravel Setup
