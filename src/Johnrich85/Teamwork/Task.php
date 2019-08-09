@@ -69,4 +69,14 @@ class Task extends AbstractObject {
     {
         return $this->client->put("$this->endpoint/$this->id.json", ['todo-item' => $args])->response();
     }
+
+    /**
+     * Create a subtask
+     * POST tasks/{id}.json
+     *
+     * @return mixed
+     */
+    public function createSubTask($args) {
+        return $this->client->post("$this->endpoint/$this->id", ['todo-item' => $args])->response();
+    }
 }
