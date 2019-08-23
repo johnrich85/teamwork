@@ -71,6 +71,18 @@ class Task extends AbstractObject {
     }
 
     /**
+     * Gets sub-tasks for a given
+     * task ID
+     *
+     * GET tasks/{id}/subtasks.json
+     *
+     * @return mixed
+     */
+    public function subTasks() {
+        return $this->client->get("$this->endpoint/$this->id/subtasks")->response();
+    }
+
+    /**
      * Create a subtask
      * POST tasks/{id}.json
      *
