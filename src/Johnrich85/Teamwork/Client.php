@@ -125,20 +125,38 @@ class Client implements RequestableInterface {
      */
     public function buildRequest($endpoint, $action, $params = [])
     {
-        if ($params && count($params) > 0)
-        {
-            $params = json_encode($params);
-        }
+        $requestOptions = ['auth' => [$this->key, 'X']];
 
-        $requestPart = $action === 'GET' ? 'query' : 'body';
+        if (!empty($params))
+        {
+            $requestOptions += $this->formatRequestParams($action, $params);
+        }
 
         $this->response = $this->client->request(
             $action,
             $this->buildUrl($endpoint),
-            ['auth' => [$this->key, 'X'], $requestPart => $params]
+            $requestOptions
         );
 
         return $this;
+    }
+
+    /**
+     * @param string $requestType
+     * @param array $params
+     * @return array
+     */
+    protected function formatRequestParams(string $requestType, $params = []) {
+        $requestPart = 'query';
+
+        if($requestType !== 'GET' ) {
+            $requestPart = 'body';
+            $params = json_encode($params);
+        }
+
+        return [
+            $requestPart => $params
+        ];
     }
 
     /**

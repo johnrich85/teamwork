@@ -27,10 +27,43 @@ class ClientTest extends PHPUnit_Framework_TestCase {
 
         $this->guzzle
             ->shouldReceive('request')->once()
-            ->with('GET', 'http://teamwork.com/packages.json', ['auth' => ['key', 'X'], 'query' => []])
+            ->with('GET', 'http://teamwork.com/packages.json', ['auth' => ['key', 'X']])
             ->andReturn(m::mock(\GuzzleHttp\Psr7\Response::class));
 
         $returned = $client->buildRequest('packages', 'GET');
+
+        $this->assertInstanceOf(Client::class, $returned);
+        $this->assertInstanceOf(\GuzzleHttp\Psr7\Response::class, $returned->getResponse());
+    }
+
+    public function test_it_builds_get_request_with_params()
+    {
+        $client = new Client($this->guzzle, 'key', 'http://teamwork.com');
+
+        $this->guzzle
+            ->shouldReceive('request')->once()
+            ->with('GET', 'http://teamwork.com/packages.json', ['auth' => ['key', 'X'], 'query' => ['a' => 'b']])
+            ->andReturn(m::mock(\GuzzleHttp\Psr7\Response::class));
+
+        $returned = $client->buildRequest('packages', 'GET', ['a' => 'b']);
+
+        $this->assertInstanceOf(Client::class, $returned);
+        $this->assertInstanceOf(\GuzzleHttp\Psr7\Response::class, $returned->getResponse());
+    }
+
+    /**
+     * @group client
+     */
+    public function test_it_builds_post_request_with_params()
+    {
+        $client = new Client($this->guzzle, 'key', 'http://teamwork.com');
+
+        $this->guzzle
+            ->shouldReceive('request')->once()
+            ->with('POST', 'http://teamwork.com/packages.json', ['auth' => ['key', 'X'], 'body' => '{"x":"y"}'])
+            ->andReturn(m::mock(\GuzzleHttp\Psr7\Response::class));
+
+        $returned = $client->buildRequest('packages', 'POST', ['x' => 'y']);
 
         $this->assertInstanceOf(Client::class, $returned);
         $this->assertInstanceOf(\GuzzleHttp\Psr7\Response::class, $returned->getResponse());
