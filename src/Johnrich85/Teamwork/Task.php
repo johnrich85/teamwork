@@ -71,6 +71,17 @@ class Task extends AbstractObject {
     }
 
     /**
+     * Delete a task
+     * DELETE tasks/{id}.json
+     *
+     * @return mixed
+     */
+    public function delete()
+    {
+        return $this->client->delete("$this->endpoint/$this->id.json")->response();
+    }
+
+    /**
      * Gets sub-tasks for a given
      * task ID
      *
