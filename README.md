@@ -94,7 +94,7 @@ Not all of the Teamwork API is supported yet but there is still a lot you can do
 // create a project
 $teamwork->project()->create([
     "name" => "My New Amazing Project",
-    "description" => "This is a project that I will dedicate my whole life too",
+    "description" => "This is a project that I will dedicate my whole life to",
     "companyId" => "999"
 ]);
 
