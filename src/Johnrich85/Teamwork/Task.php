@@ -26,6 +26,14 @@ class Task extends AbstractObject {
         return $this->client->get($this->endpoint, $args)->response();
     }
 
+    /*
+     * Get a task
+     */
+    public function get()
+    {
+        return $this->client->get("$this->endpoint/$this->id", [])->response();
+    }
+
     /**
      * Complete A Task
      * PUT tasks/{id}/complete.json
