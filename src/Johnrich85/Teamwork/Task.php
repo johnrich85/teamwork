@@ -82,6 +82,20 @@ class Task extends AbstractObject {
     }
 
     /**
+     * Add a reminder to a task
+     * POST tasks/{id}/reminders.json
+     * @param $args
+     * @return mixed
+     */
+    public function addReminder($args)
+    {
+        $payload = ['reminder' => $args];
+        $endpoint = "$this->endpoint/$this->id/reminders";
+
+        return $this->client->post($endpoint, $payload)->response();
+    }
+
+    /**
      * Gets sub-tasks for a given
      * task ID
      *
