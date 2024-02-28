@@ -7,7 +7,7 @@ use Johnrich85\Teamwork\Contracts\RequestableInterface;
 class Client implements RequestableInterface {
 
     /**
-     * @var GuzzleHttp\Client
+     * @var \GuzzleHttp\Client
      */
     protected $client;
 

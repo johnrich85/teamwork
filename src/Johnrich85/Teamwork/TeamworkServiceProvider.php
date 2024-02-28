@@ -5,21 +5,16 @@ use Illuminate\Support\ServiceProvider;
 
 class TeamworkServiceProvider extends ServiceProvider {
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton('rossedman.teamwork', function($app)
         {
-            $client = new \Johnrich85\Teamwork\Client(new Guzzle,
+            $client = new Client(new Guzzle,
                 $app['config']->get('services.teamwork.key'),
                 $app['config']->get('services.teamwork.url')
             );
 
-            return new \Johnrich85\Teamwork\Factory($client);
+            return new Factory($client);
         });
 
         $this->app->bind('Johnrich85\Teamwork\Factory', 'rossedman.teamwork');
