@@ -3,7 +3,7 @@
 use Johnrich85\Teamwork\Traits\TimeTrait;
 use Johnrich85\Teamwork\Traits\RestfulTrait;
 
-class Task extends AbstractObject {
+class Tasks extends AbstractObject {
     protected $endpoint = 'projects/api/v3/tasks';
 
     /**
@@ -16,14 +16,12 @@ class Task extends AbstractObject {
      */
     public function all($args = null)
     {
-        return $this->client->get($this->endpoint, $args)
-            ->response();
+        return $this->client->get($this->endpoint, $args)->response();
     }
 
     public function get()
     {
-        return $this->client->get("$this->endpoint/$this->id", [])
-            ->response();
+        return $this->client->get("$this->endpoint/$this->id", [])->response();
     }
 
     /**
@@ -35,8 +33,7 @@ class Task extends AbstractObject {
      */
     public function complete()
     {
-        return $this->client->put("tasks/$this->id/complete", [])
-            ->response();
+        return $this->client->put("tasks/$this->id/complete", [])->response();
     }
 
     /**
@@ -47,8 +44,7 @@ class Task extends AbstractObject {
      */
     public function edit($args)
     {
-        return $this->client->patch("$this->endpoint/$this->id.json", $args)
-            ->response();
+        return $this->client->patch("$this->endpoint/$this->id.json", $args)->response();
     }
 
     /**
@@ -59,8 +55,7 @@ class Task extends AbstractObject {
      */
     public function delete()
     {
-        return $this->client->delete("$this->endpoint/$this->id.json")
-            ->response();
+        return $this->client->delete("$this->endpoint/$this->id.json")->response();
     }
 
 
@@ -75,8 +70,7 @@ class Task extends AbstractObject {
     {
         $payload = ['reminder' => $args];
 
-        return $this->client->post("tasks/$this->id/reminders", $payload)
-            ->response();
+        return $this->client->post("tasks/$this->id/reminders", $payload)->response();
     }
 
     /**
@@ -87,8 +81,7 @@ class Task extends AbstractObject {
      * @return mixed
      */
     public function subTasks() {
-        return $this->client->get("tasks/$this->id/subtasks")
-            ->response();
+        return $this->client->get("tasks/$this->id/subtasks")->response();
     }
 
     /**
