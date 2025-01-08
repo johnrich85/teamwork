@@ -1,5 +1,6 @@
 <?php
 
+use Johnrich85\Teamwork\Contracts\RequestableInterface;
 use Mockery as m;
 use Johnrich85\Teamwork\Factory;
 
@@ -8,21 +9,12 @@ class FactoryTest extends PHPUnit_Framework_TestCase {
     public function setUp()
     {
         parent::setUp();
-        $this->requestable = m::mock(\Johnrich85\Teamwork\Contracts\RequestableInterface::class);
+        $this->requestable = m::mock(RequestableInterface::class);
     }
 
     public function tearDown()
     {
         m::close();
-    }
-
-    /**
-     * @group factory
-     */
-    public function test_that_it_returns_new_account_object()
-    {
-        $factory = new Factory($this->requestable);
-        $this->assertInstanceOf(\Johnrich85\Teamwork\Account::class, $factory->account());
     }
 
     /**
@@ -41,10 +33,10 @@ class FactoryTest extends PHPUnit_Framework_TestCase {
     public function test_that_it_parses_id_parameter()
     {
         $factory = new Factory($this->requestable);
-        $activity = $factory->activity(30);
+        $task = $factory->tasks(30);
 
-        $this->assertObjectHasAttribute('id', $activity);
-        $this->assertEquals(30, $activity->getID());
+        $this->assertObjectHasAttribute('id', $task);
+        $this->assertEquals(30, $task->getID());
     }
 
     /**
@@ -54,6 +46,6 @@ class FactoryTest extends PHPUnit_Framework_TestCase {
     public function test_that_it_only_accepts_integer_as_parameter()
     {
         $factory = new Factory($this->requestable);
-        $factory->activity('butts');
+        $factory->tasks('butts');
     }
 }
