@@ -9,9 +9,6 @@ abstract class AbstractObject {
      */
     protected $client;
 
-    /**
-     * TODO: is this needed?
-     */
     protected $request;
 
     /**
