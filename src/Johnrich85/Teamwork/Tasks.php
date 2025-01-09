@@ -44,7 +44,7 @@ class Tasks extends AbstractObject {
      */
     public function edit($args)
     {
-        return $this->client->patch("$this->endpoint/$this->id.json", $args)->response();
+        return $this->client->patch("$this->endpoint/$this->id", $args)->response();
     }
 
     /**
@@ -55,7 +55,7 @@ class Tasks extends AbstractObject {
      */
     public function delete()
     {
-        return $this->client->delete("$this->endpoint/$this->id.json")->response();
+        return $this->client->delete("$this->endpoint/$this->id")->response();
     }
 
 
