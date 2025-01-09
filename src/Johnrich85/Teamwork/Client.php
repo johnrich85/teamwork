@@ -97,6 +97,19 @@ class Client implements RequestableInterface {
     }
 
     /**
+     * Patch
+     *
+     * @param $endpoint
+     * @param $data
+     *
+     * @return Client
+     */
+    public function patch($endpoint, $data)
+    {
+        return $this->buildRequest($endpoint, 'PATCH', $data);
+    }
+
+    /**
      * Delete
      *
      * @param $endpoint
